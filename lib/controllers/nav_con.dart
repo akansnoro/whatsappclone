@@ -10,7 +10,8 @@ import 'package:whatsappclone/screens/status.dart';
 
 class NavCons extends GetxController {
   RxInt selectedindex = 0.obs;
-  var selectedButton = 0.obs;
+  RxInt selectedButton = 0.obs;
+
 
   List<NavItem> NavItems = [
     NavItem(title: 'Chats', icon: Icons.camera_alt, selectedIcon: Icons.camera_alt,page: Chats()),

@@ -98,10 +98,29 @@ class Calls extends StatelessWidget {
                 ],
               ),
             ),
-            _buildcalls('asset/img/ii.jpg', 'John Doe', "Outgoing","9:40 Am"),
-            _buildincomingcalls('asset/img/images1.png', "Jane Smith", "incoming", "9:15 Am"),
-            _buildcalls("asset/img/nnn.jpg", "Mom", "Outgoing", "Yesterday"),
-            _buildmissedcalls("asset/img/images2.jpg", "Dad", "Missed", "Yesterday")
+            Expanded(
+              child: Obx((){
+                if (controller.selectedButton.value == 0){
+                  return ListView(
+                  children: [
+                  _buildcalls('asset/img/ii.jpg', 'John Doe', "Outgoing","9:40 Am"),
+                  _buildincomingcalls('asset/img/images1.png', "Jane Smith", "incoming", "9:15 Am"),
+                  _buildcalls("asset/img/nnn.jpg", "Mom", "Outgoing", "Yesterday"),
+                  _buildmissedcalls("asset/img/images2.jpg", "Dad", "Missed", "Yesterday",Icons.call),
+                    _buildmissedcalls("asset/img/jj.jpg", "Bro", "Blocked", "Yesterday",Icons.block)
+
+                  ]
+                  );
+                } else if (controller.selectedButton.value == 1){
+                  return ListView(children: [ _buildmissedcalls("asset/img/images2.jpg", "Dad", "Missed", "Yesterday",Icons.call)],) ;
+                }
+                else {
+                  return ListView(children: [_buildmissedcalls("asset/img/jj.jpg", "Bro", "Blocked", "Yesterday",Icons.block) ],) ;
+                }
+              }),
+            )
+
+
           ],
         )
 
@@ -114,6 +133,7 @@ class Calls extends StatelessWidget {
   }
 }
 Widget _buildcalls ( String image, String name,String typeofcall,String time){
+  NavCons controller  = Get.find<NavCons>();
   return Padding(
     padding: const EdgeInsets.all(10.0),
     child: Row(
@@ -127,10 +147,10 @@ Widget _buildcalls ( String image, String name,String typeofcall,String time){
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
-              mainAxisAlignment: .spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
-                  crossAxisAlignment: .start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(name,style: TextStyle(
                         fontSize: 15,
@@ -176,6 +196,7 @@ Widget _buildcalls ( String image, String name,String typeofcall,String time){
   );
 }
 Widget _buildincomingcalls ( String image, String name,String typeofcall,String time){
+  NavCons controller  = Get.find<NavCons>();
   return Padding(
     padding: const EdgeInsets.all(10.0),
     child: Row(
@@ -189,7 +210,7 @@ Widget _buildincomingcalls ( String image, String name,String typeofcall,String 
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
-                mainAxisAlignment: .spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Column(
                     children: [
@@ -236,7 +257,7 @@ Widget _buildincomingcalls ( String image, String name,String typeofcall,String 
     ),
   );
 }
-Widget _buildmissedcalls ( String image, String name,String typeofcall,String time){
+Widget _buildmissedcalls ( String image, String name,String typeofcall,String time,IconData Icon1){
   return Padding(
     padding: const EdgeInsets.all(10.0),
     child: Row(
@@ -250,10 +271,10 @@ Widget _buildmissedcalls ( String image, String name,String typeofcall,String ti
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
-                mainAxisAlignment: .spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Column(
-                    crossAxisAlignment: .start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(name,style: TextStyle(
                           fontSize: 15,
@@ -281,7 +302,7 @@ Widget _buildmissedcalls ( String image, String name,String typeofcall,String ti
                                 color: Colors.white
                             )),
                           ),
-                          Icon(Icons.call,color: Colors.red,),
+                          Icon(Icon1,color: Colors.red,),
 
                         ],
                       )

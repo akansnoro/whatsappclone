@@ -17,7 +17,7 @@ class Newchat extends StatelessWidget {
          }, icon: Icon(Icons.arrow_back)),
           title: Text('New chat',style: TextStyle(
             // color: Colors.white,
-            fontWeight: .bold,
+            fontWeight: FontWeight.bold,
             fontSize: 23,
           )),
           actions: [
@@ -27,7 +27,7 @@ class Newchat extends StatelessWidget {
           ],
         ),
         body: Column(
-          crossAxisAlignment: .start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _types("New Group"),
             _types("New Contact"),
@@ -43,7 +43,7 @@ class Newchat extends StatelessWidget {
 
               SizedBox(width: 10,),
               Text("New Community",style: TextStyle(
-                  fontWeight: .bold,
+                  fontWeight: FontWeight.bold,
                   fontSize: 20
               ),)
             ],
@@ -53,7 +53,7 @@ class Newchat extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Text("Frequently Contacted",style: TextStyle(
-                  fontWeight: .bold,
+                  fontWeight: FontWeight.bold,
                   fontSize: 15
               ),),
             ),
@@ -64,19 +64,19 @@ class Newchat extends StatelessWidget {
             
           ],
         ),
-        floatingActionButton:  FloatingActionButton(
-
-          onPressed: (){
-            // Navigator.push(context, MaterialPageRoute(builder: (context) => Newchat()),);
-            Get.to(()=>Community());
-          },
-          backgroundColor: Colors.green,
-          foregroundColor: Colors.white,
-          child: Icon(Icons.group,),
-          shape: StadiumBorder(),
-
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+        // floatingActionButton:  FloatingActionButton(
+        //
+        //   onPressed: (){
+        //     // Navigator.push(context, MaterialPageRoute(builder: (context) => Newchat()),);
+        //     Get.to(()=>Community());
+        //   },
+        //   backgroundColor: Colors.green,
+        //   foregroundColor: Colors.white,
+        //   child: Icon(Icons.group,),
+        //   shape: StadiumBorder(),
+        //
+        // ),
+        // floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       ),
       theme: ThemeData(
           textTheme: GoogleFonts.poppinsTextTheme(),
@@ -97,7 +97,7 @@ Widget _types (String name){
 
         SizedBox(width: 10,),
         Text(name,style: TextStyle(
-          fontWeight: .bold,
+          fontWeight: FontWeight.bold,
           fontSize: 20
         ),)
       ],
@@ -116,10 +116,10 @@ Widget _newContact (String image,String name,String description){
           ),
         ),
         Column(
-          crossAxisAlignment: .start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(name,style: TextStyle(
-              fontWeight: .bold,
+              fontWeight: FontWeight.bold,
               fontSize: 17
             ),),
             Text(description,style: TextStyle(

@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import 'package:whatsappclone/screens/homeScreen.dart';
+import 'package:whatsappclone/screens/navscreen.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -17,7 +18,7 @@ class SplashScreen extends StatelessWidget {
         Scaffold(
           backgroundColor: Color(0xFF217842),
           body: Column(
-            mainAxisAlignment: .center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SvgPicture.asset("asset/icon/WhatsApp-Logo.wine.svg",
                 height: 100,

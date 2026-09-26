@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Userprofile extends StatelessWidget {
  final String image;
@@ -11,7 +12,7 @@ class Userprofile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.arrow_back_outlined,),
+        leading:IconButton(onPressed: ()=>Get.back(), icon: Icon(Icons.arrow_back_outlined,) ),
         actions: [
           Icon(Icons.more_vert_sharp,),
         ],
@@ -29,7 +30,7 @@ class Userprofile extends StatelessWidget {
             Text(number),
             Center(
               child: Row(
-                mainAxisAlignment: .center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   IconButton(onPressed: (){}, icon: Icon(Icons.phone)),
                   SizedBox(width: 5,),
@@ -54,11 +55,11 @@ class Userprofile extends StatelessWidget {
               thickness: 9,
             ),
             Row(
-              mainAxisAlignment: .start,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text("3 Groups in common",style: TextStyle(
+                  child: Text("No groups in common",style: TextStyle(
                       fontSize: 15,
                     color: Colors.grey
                       ),),
@@ -69,19 +70,53 @@ class Userprofile extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                 children: [
-                CircleAvatar(
-                             backgroundColor: Colors.green,
-                foregroundColor: Colors.white,
-                            child: Icon(Icons.group)),
-                          Row(
-                          children: [
-                          Text("Create group with"),
-                          Text(name)
-                            ],
-                          )
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: CircleAvatar(
+                      backgroundColor: Colors.green, 
+                      foregroundColor: Colors.white,
+                      child: Icon(Icons.group)),
+                ),
+                  Row(
+                    children: [
+                      Text("Create group with  "),
+                      Text(name)
+                    ],
+                  )
                 ],
                             ),
               ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: CircleAvatar(
+                        backgroundColor: Colors.green,
+                        foregroundColor: Colors.white,
+                        child: Icon(Icons.group_add_outlined)),
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Add to groups"),
+                      Text("Add this contact to a group you're in.",style: TextStyle(
+                          fontSize: 13,
+                          color: Colors.grey
+                      ),)
+                    ],
+                  )
+                ],
+              ),
+            ),
+            Divider(
+              thickness: 9,
+            ),
+            _last(Icons.favorite_border, "Add to Favourites", Colors.black, Colors.black),
+            _last(Icons.co_present_sharp, "Add to list",Colors.black, Colors.black),
+            _last(Icons.cancel, "Clear chat", Colors.red,Colors.red),
+            
         
           ],
         ),
@@ -105,7 +140,7 @@ Widget _info2(IconData icon,String txt2,String txt3,String txt4){
   return Padding(
     padding: const EdgeInsets.all(10.0),
     child: Column(
-      crossAxisAlignment: .start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           children: [
@@ -113,7 +148,7 @@ Widget _info2(IconData icon,String txt2,String txt3,String txt4){
             SizedBox(width: 10,),
             Text(txt2,style: TextStyle(
                 fontSize: 18,
-                fontWeight: .bold
+                fontWeight: FontWeight.bold
             ),),
 
           ],
@@ -141,5 +176,20 @@ Widget _info2(IconData icon,String txt2,String txt3,String txt4){
         )
       ],
     ),
+  );
+}
+Widget _last( IconData icon,String text,Color color,Color iconColor ){
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.start,
+    children: [
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Icon(icon,color: iconColor,),
+      ),
+      Text(text,style: TextStyle(
+          fontSize: 17,
+          color: color
+      ),)
+    ],
   );
 }

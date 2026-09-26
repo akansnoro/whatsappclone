@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:whatsappclone/controllers/nav_con.dart';
+import 'package:whatsappclone/screens/calls.dart';
 import 'package:whatsappclone/screens/favourites.dart';
 import 'package:whatsappclone/screens/groups.dart';
 import 'package:whatsappclone/screens/individualChat.dart';
 import 'package:whatsappclone/screens/newChat.dart';
-import 'package:whatsappclone/screens/individualChat.dart';
+import 'package:whatsappclone/screens/new_channel.dart';
+import 'package:whatsappclone/screens/settings.dart';
 import 'package:whatsappclone/screens/unread.dart';
-import 'package:whatsappclone/screens/chatCon.dart'; // Import your list here
 
-
+import 'new_group.dart';
 
 class Chats extends StatelessWidget {
 
@@ -32,7 +32,46 @@ class Chats extends StatelessWidget {
           actions: [
             Icon(Icons.camera_alt_outlined),
             SizedBox(width: 20),
-            Icon(Icons.more_vert_outlined)
+            PopupMenuButton<String>(
+              icon: Icon(Icons.more_vert_outlined),
+                color: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadiusGeometry.circular(10)
+                ),
+                onSelected: (String value) {
+                if (value == 'New group'){
+                  Get.to(()=>NewGroup());
+                } else if (value == 'New channel'){
+                  Get.to(()=>NewChannel2());
+
+                }
+                else if (value == 'Settings'){
+                  Get.to(()=>Settings());
+
+                }
+                print("selected: $value");
+                },
+
+                itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+                   PopupMenuItem<String>(
+                    value: 'New group',
+                    child: Text('New group')
+                  ),
+                   PopupMenuItem<String>(
+                    value: 'New channel',
+                    child: Text('New channel'),
+                  ),
+                   PopupMenuItem<String>(
+                    value: 'Settings',
+                    child: Text('Settings'),
+                  ),
+                   PopupMenuItem<String>(
+                    value: 'Starred messages',
+                    child: Text('Starred messages'),
+                  ),
+                ])
+            // IconButton(onPressed: (){}, icon: )
+
           ],
         ),
         body: Column(
@@ -136,29 +175,49 @@ class Chats extends StatelessWidget {
 
               ],
             ),
+            Expanded(child: Obx(
+                    () {
+                      if(controller.selectedButton == 0){
+                        return ListView(
+                          children: [
+                            InkWell(
+                                onTap: (){
+                                  Get.to(()=>Individualchat(Time1: "10:14AM", Time2: "10:16AM✔✔", name: "Jane Smith", image: 'asset/img/images1.png', Text1: "Hey! Are you free to look over the", Text2: "new designs today?", Text3: "Yes! Just finished my morning", Text4: "meeting. Send them over",duration: "0:12",)
+                                  );
+                                },
+                                child: _buildChatItem("Jane Smith", "see you later", 'asset/img/images1.png' , "9.41AM", "2")
+                            ),
 
-            InkWell(
-                onTap: (){
-                  Get.to(()=>Individualchat(Time1: "10:14AM", Time2: "10:16AM✔✔", name: "Jane Smith", image: 'asset/img/images1.png', Text1: "Hey! Are you free to look over the", Text2: "new designs today?", Text3: "Yes! Just finished my morning", Text4: "meeting. Send them over")
-                  );
-                },
-                child: _buildChatItem("Jane Smith", "see you later", 'asset/img/images1.png' , "9.41AM", "2")
+                            InkWell(
+                                onTap: (){
+                                  Get.to(()=>Individualchat(Time1: "2:10PM", Time2: "2:14PM✔✔", name: "Family Group", image: 'asset/img/images2.jpg', Text1: "Hi babe", Text2: "Dinner at 8", Text3: "Hello Hon", Text4: "OK",duration: "0:23",));
+                                },
+                                child: _buildChatItem("Emily Johnson", "Emily Johnson:Dinner at 7", 'asset/img/images2.jpg', "9:30AM", "5")
+                            ),
+
+
+                            _buildChatItem("Besties", "Mike:😂😂", 'asset/img/rrr.jpg', "9:18AM", "1"),
+
+
+                            _buildChatItem("Work Team", "You:Project update", 'asset/img/nnn.jpg', "8:50AM", ""),
+
+                            _buildChatItem("Family Group", "Thanks!", "asset/img/eee.jpg", "Yesterday", ""),
+
+
+                          ],
+                        );
+                      }
+                      else if (controller.selectedButton == 1){
+                        return Unread();
+                      }
+                      else if (controller.selectedButton == 2){
+                        return Groups();
+                      }
+                      else {
+                        return Favourites();
+                      }
+                    })
             ),
-
-            InkWell(
-              onTap: (){
-                Get.to(()=>Individualchat(Time1: "2:10PM", Time2: "2:14PM✔✔", name: "Family Group", image: 'asset/img/images2.jpg', Text1: "Hi babe", Text2: "Dinner at 8", Text3: "Hello Hon", Text4: "OK"));
-              },
-                child: _buildChatItem("Emily Johnson", "Emily Johnson:Dinner at 7", 'asset/img/images2.jpg', "9:30AM", "5")
-            ),
-
-
-            _buildChatItem("Besties", "Mike:😂😂", 'asset/img/rrr.jpg', "9:18AM", "1"),
-
-
-            _buildChatItem("Work Team", "You:Project update", 'asset/img/nnn.jpg', "8:50AM", ""),
-
-            _buildChatItem("Family Group", "Thanks!", "asset/img/eee.jpg", "Yesterday", ""),
 
 
 
@@ -184,6 +243,7 @@ class Chats extends StatelessWidget {
 
 
 Widget _buildChatItem(String name, String message, String image, String time, String count) {
+  NavCons controller = Get.find<NavCons>();
   return Padding(
     padding:  EdgeInsets.all(8.0),
     child: Row(

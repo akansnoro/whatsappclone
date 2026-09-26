@@ -14,12 +14,11 @@ class Navscreen extends StatelessWidget {
 
     return MaterialApp(
       home: Scaffold(
-        body: Obx(()=>controller.NavItems[controller.selectedindex.value].page),
+        body:  Obx(()=>controller.NavItems[controller.selectedindex.value].page),
         bottomNavigationBar: Obx(
               (){
                 bool currentindex = controller.selectedindex.value == 0 || controller.selectedindex.value==3;
                 bool Pagecolour = controller.selectedindex.value==1 || controller.selectedindex.value==2;
-
 
                 return NavigationBarTheme(
                   data: NavigationBarThemeData(
@@ -31,9 +30,9 @@ class Navscreen extends StatelessWidget {
                     else if (Pagecolour){
                       return TextStyle(color: Colors.white,fontSize: 12,fontWeight: FontWeight(400));
                     }
-                    return TextStyle(color: Colors.white,fontSize: 12,fontWeight: FontWeight(400));
+                    return TextStyle(color: Colors.yellow,fontSize: 12,fontWeight: FontWeight(400));
                   }
-                  return TextStyle(color: Colors.grey,fontSize: 12);
+                  return TextStyle(color: Colors.grey[300],fontSize: 12);
                   }),
                   ),
                   child: NavigationBar(
@@ -52,7 +51,9 @@ class Navscreen extends StatelessWidget {
 
                       destinations: [
                         ...controller.NavItems.map((Items)=>NavigationDestination
-                          (icon: Icon(Items.icon,color: Colors.grey,),
+                          (icon: Icon(Items.icon,color: controller.selectedindex.value==1 || controller.selectedindex.value==2
+                            ? Colors.white
+                            :Colors.grey,),
                             selectedIcon: Icon(Items.selectedIcon,color: controller.selectedindex.value==1 || controller.selectedindex.value==2
                                 ? Colors.white
                                 :Theme.of(context).primaryColor,) ,
@@ -62,37 +63,6 @@ class Navscreen extends StatelessWidget {
                 );
               }
 
-        //           return NavigationBarTheme(
-        //         data: NavigationBarThemeData(
-        //     labelTextStyle: WidgetStateProperty.all(
-        //     TextStyle(color: labelColor,fontSize: 12)
-        //
-        // ),
-        // ),
-        //         child: NavigationBar(
-        //         selectedIndex: controller.selectedindex.value,
-        //         onDestinationSelected: (newtappedvalue){
-        //           controller.selectedindex.value = newtappedvalue;
-        //         },
-        //         labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
-        //         indicatorColor: controller.selectedindex.value==1 || controller.selectedindex.value==2
-        //             ? Colors.green[400]
-        //             :Colors.transparent,
-        //             backgroundColor: controller.selectedindex.value==1 || controller.selectedindex.value==2
-        //             ? Colors.green[600]
-        //             : Colors.white,
-        //
-        //
-        //         destinations: [
-        //           ...controller.NavItems.map((Items)=>NavigationDestination
-        //             (icon: Icon(Items.icon,color: Colors.grey,),
-        //               selectedIcon: Icon(Items.selectedIcon,color: controller.selectedindex.value==1 || controller.selectedindex.value==2
-        //                   ? Colors.white
-        //                   :Theme.of(context).primaryColor,) ,
-        //               label: Items.title)),
-        //
-        //         ]),
-        //       ),
         ),
 
       ),

@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:whatsappclone/screens/splashscreen.dart';
+import 'package:whatsappclone/screens/chats.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
+import 'package:whatsappclone/screens/navscreen.dart';
+
 
 void main() {
 
   runApp(GetMaterialApp(
     debugShowCheckedModeBanner: false,
-    home: SplashScreen(),
+    home: Navscreen(),
     theme: ThemeData(
         textTheme: GoogleFonts.poppinsTextTheme(),
         brightness: Brightness.light,

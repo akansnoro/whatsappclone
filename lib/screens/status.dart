@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:whatsappclone/screens/statuses.dart';
 
 class Status extends StatelessWidget {
   const Status({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // var name1="janeSmith";
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.green[600],
@@ -23,7 +26,7 @@ class Status extends StatelessWidget {
           ],
         ),
         body: Column(
-          crossAxisAlignment: .start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Divider(
               color: Colors.white10,
@@ -34,7 +37,7 @@ class Status extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
-                mainAxisAlignment: .start,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Stack(
                     children: [
@@ -65,7 +68,7 @@ class Status extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
-                      crossAxisAlignment: .start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("My status",style: TextStyle(
                       fontSize: 15,
@@ -95,22 +98,38 @@ class Status extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text("Recent Updates",style: TextStyle(
-                fontWeight: .bold,
+                fontWeight: FontWeight.bold,
                 color: Colors.white,
                 letterSpacing: 1,
                 fontSize: 16
 
               ),),
             ),
-            _buildstatusitem('asset/img/images1.png', "Jane Smith", "Just now"),
-            _buildstatusitem('asset/img/ii.jpg', 'John Doe', '10 minutes ago'),
-            _buildstatusitem('asset/img/rrr.jpg', "Besties", "25 minutes ago"),
-            _buildstatusitem("asset/img/eee.jpg", "Emily Johnson", '1 hour ago')
+            InkWell(
+              onTap: (){
+                Get.to(()=> Statuses(name: "Jane Smith", profilePic: 'asset/img/images1.png', statusImage: "asset/img/status1.jpg", time: "Just now", caption: "NICE",number: "+234 9890787655",));
+              },
+                child: _buildstatusitem('asset/img/images1.png', "Jane Smith", "Just now")),
+            InkWell(
+                onTap: (){
+                  Get.to(()=> Statuses(name: 'John Doe', profilePic: 'asset/img/ii.jpg', statusImage: "asset/img/status2.jpg", time: "10 minutes ago", caption: "WE Outside",number: "+234 7647883283",));
+                },
+                child: _buildstatusitem('asset/img/ii.jpg', 'John Doe', '10 minutes ago')),
+            InkWell(
+                onTap: (){
+                  Get.to(()=> Statuses(name: 'Greg', profilePic: 'asset/img/rrr.jpg', statusImage: "asset/img/status3.jpg", time: "25 minutes ago", caption: "",number: "+234 93263840346",));
+                },
+                child: _buildstatusitem('asset/img/rrr.jpg', "Greg", "25 minutes ago")),
+            InkWell(
+                onTap: (){
+                  Get.to(()=> Statuses(name: 'Emily Johnson', profilePic: 'asset/img/eee.jpg', statusImage: "asset/img/status4.jpg", time: "1 hour ago", caption: "",number: "+234 8492747202",));
+                },
+                child: _buildstatusitem("asset/img/eee.jpg", "Emily Johnson", '1 hour ago'))
 
           ],
         ),
         floatingActionButton:  Column(
-          mainAxisAlignment: .end,
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
             FloatingActionButton(
               mini: true,
@@ -133,17 +152,6 @@ class Status extends StatelessWidget {
             ),
           ],
         ),
-        // floatingActionButtonLocation: FloatingActionButtonLocation.endFloat
-        // floatingActionButton:  FloatingActionButton(
-        //
-        //   onPressed: (){},
-        //   backgroundColor: Colors.white,
-        //   foregroundColor: Colors.green,
-        //   child: Icon(Icons.create,),
-        //   shape: StadiumBorder(),
-        //
-        // ),
-        // floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
 
 
       ),
@@ -160,7 +168,7 @@ Widget _buildstatusitem (String image,String name,String time)
   return  Padding(
     padding: const EdgeInsets.all(8.0),
     child: Row(
-      mainAxisAlignment: .start,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         CircleAvatar(
           radius: 24,
@@ -173,7 +181,7 @@ Widget _buildstatusitem (String image,String name,String time)
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
-            crossAxisAlignment: .start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(name,style: TextStyle(
                   fontSize: 15,
